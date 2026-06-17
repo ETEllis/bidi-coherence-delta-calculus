@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Trit barrier icon concept">
+  <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 196h176" stroke-width="14"/>
+    <path d="M58 164c20-66 39-99 58-99s38 33 58 99" stroke-width="14"/>
+    <path d="M98 164c10-30 20-45 30-45s20 15 30 45" stroke-width="14"/>
+    <path d="M128 56v144" stroke-width="14"/>
+    <path d="M84 92 56 128l28 36" stroke-width="14"/>
+    <path d="M172 92 200 128l-28 36" stroke-width="14"/>
+    <circle cx="128" cy="128" r="13" fill="#000" stroke="none"/>
+  </g>
+</svg>

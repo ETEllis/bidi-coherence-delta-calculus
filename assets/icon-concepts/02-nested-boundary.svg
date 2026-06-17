@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Nested boundary icon concept">
+  <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="28" y="28" width="200" height="200" rx="52" stroke-width="14"/>
+    <rect x="68" y="68" width="120" height="120" rx="28" stroke-width="14"/>
+    <path d="M128 82 85 174h86L128 82Z" stroke-width="14"/>
+    <path d="M56 128h40" stroke-width="14"/>
+    <path d="M160 128h40" stroke-width="14"/>
+    <path d="M80 104 56 128l24 24" stroke-width="14"/>
+    <path d="M176 104 200 128l-24 24" stroke-width="14"/>
+  </g>
+</svg>

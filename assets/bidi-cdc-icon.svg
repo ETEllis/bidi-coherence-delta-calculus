@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">BiDi Coherence-Delta Calculus icon</title>
+  <desc id="desc">Black and white mark with nested boundary arcs, bidirectional coupling, and a central coherence delta aperture.</desc>
+  <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M128 24C70.6 24 24 70.6 24 128s46.6 104 104 104 104-46.6 104-104S185.4 24 128 24Z" stroke-width="14"/>
+    <path d="M83 67c-25.1 14.8-42 42.1-42 73.3 0 19.1 6.3 36.8 17 51" stroke-width="14"/>
+    <path d="M173 189c25.1-14.8 42-42.1 42-73.3 0-19.1-6.3-36.8-17-51" stroke-width="14"/>
+    <path d="M128 72 65 184h126L128 72Z" stroke-width="14"/>
+    <path d="M96 138h64" stroke-width="14" stroke-linecap="butt"/>
+  </g>
+</svg>

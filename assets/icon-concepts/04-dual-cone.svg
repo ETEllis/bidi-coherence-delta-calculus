@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Dual cone icon concept">
+  <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M128 30 50 128l78 98 78-98-78-98Z" stroke-width="14"/>
+    <path d="M50 128h156" stroke-width="14"/>
+    <path d="M128 30v196" stroke-width="14"/>
+    <path d="M86 86c31 21 53 21 84 0" stroke-width="14"/>
+    <path d="M86 170c31-21 53-21 84 0" stroke-width="14"/>
+    <path d="M76 104 50 128l26 24" stroke-width="14"/>
+    <path d="M180 104 206 128l-26 24" stroke-width="14"/>
+  </g>
+</svg>
