@@ -1,7 +1,7 @@
-From Stdlib Require Import Bool.Bool.
-From Stdlib Require Import Lists.List.
-From Stdlib Require Import Arith.PeanoNat.
-From Stdlib Require Import ZArith.ZArith.
+From Coq Require Import Bool.Bool.
+From Coq Require Import Lists.List.
+From Coq Require Import Arith.PeanoNat.
+From Coq Require Import ZArith.ZArith.
 Import ListNotations.
 Open Scope Z_scope.
 
