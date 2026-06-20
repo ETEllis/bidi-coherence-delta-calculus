@@ -1,0 +1,261 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620">
+<rect width="960" height="620" fill="#f8fafc"/>
+<text x="24" y="36" font-family="ui-monospace, Menlo, monospace" font-size="22" font-weight="700">bridge64 dyadic/triadic codebook</text>
+<text x="24" y="62" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#475569">source=bridge64.cdc</text>
+<rect x="24" y="88" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="32" y="103" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">00</text>
+<text x="32" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">000000</text>
+<text x="86" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">000</text>
+<rect x="138" y="88" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="146" y="103" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">01</text>
+<text x="146" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">000001</text>
+<text x="200" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">001</text>
+<rect x="252" y="88" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="260" y="103" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">02</text>
+<text x="260" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">000010</text>
+<text x="314" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">002</text>
+<rect x="366" y="88" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="374" y="103" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">03</text>
+<text x="374" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">000011</text>
+<text x="428" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">003</text>
+<rect x="480" y="88" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="488" y="103" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">04</text>
+<text x="488" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">000100</text>
+<text x="542" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">010</text>
+<rect x="594" y="88" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="602" y="103" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">05</text>
+<text x="602" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">000101</text>
+<text x="656" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">011</text>
+<rect x="708" y="88" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="716" y="103" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">06</text>
+<text x="716" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">000110</text>
+<text x="770" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">012</text>
+<rect x="822" y="88" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="830" y="103" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">07</text>
+<text x="830" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">000111</text>
+<text x="884" y="120" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">013</text>
+<rect x="24" y="150" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="32" y="165" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">08</text>
+<text x="32" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">001000</text>
+<text x="86" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">020</text>
+<rect x="138" y="150" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="146" y="165" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">09</text>
+<text x="146" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">001001</text>
+<text x="200" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">021</text>
+<rect x="252" y="150" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="260" y="165" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">10</text>
+<text x="260" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">001010</text>
+<text x="314" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">022</text>
+<rect x="366" y="150" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="374" y="165" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">11</text>
+<text x="374" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">001011</text>
+<text x="428" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">023</text>
+<rect x="480" y="150" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="488" y="165" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">12</text>
+<text x="488" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">001100</text>
+<text x="542" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">030</text>
+<rect x="594" y="150" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="602" y="165" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">13</text>
+<text x="602" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">001101</text>
+<text x="656" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">031</text>
+<rect x="708" y="150" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="716" y="165" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">14</text>
+<text x="716" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">001110</text>
+<text x="770" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">032</text>
+<rect x="822" y="150" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="830" y="165" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">15</text>
+<text x="830" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">001111</text>
+<text x="884" y="182" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">033</text>
+<rect x="24" y="212" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="32" y="227" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">16</text>
+<text x="32" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">010000</text>
+<text x="86" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">100</text>
+<rect x="138" y="212" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="146" y="227" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">17</text>
+<text x="146" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">010001</text>
+<text x="200" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">101</text>
+<rect x="252" y="212" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="260" y="227" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">18</text>
+<text x="260" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">010010</text>
+<text x="314" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">102</text>
+<rect x="366" y="212" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="374" y="227" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">19</text>
+<text x="374" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">010011</text>
+<text x="428" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">103</text>
+<rect x="480" y="212" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="488" y="227" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">20</text>
+<text x="488" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">010100</text>
+<text x="542" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">110</text>
+<rect x="594" y="212" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="602" y="227" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">21</text>
+<text x="602" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">010101</text>
+<text x="656" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">111</text>
+<rect x="708" y="212" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="716" y="227" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">22</text>
+<text x="716" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">010110</text>
+<text x="770" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">112</text>
+<rect x="822" y="212" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="830" y="227" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">23</text>
+<text x="830" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">010111</text>
+<text x="884" y="244" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">113</text>
+<rect x="24" y="274" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="32" y="289" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">24</text>
+<text x="32" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">011000</text>
+<text x="86" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">120</text>
+<rect x="138" y="274" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="146" y="289" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">25</text>
+<text x="146" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">011001</text>
+<text x="200" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">121</text>
+<rect x="252" y="274" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="260" y="289" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">26</text>
+<text x="260" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">011010</text>
+<text x="314" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">122</text>
+<rect x="366" y="274" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="374" y="289" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">27</text>
+<text x="374" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">011011</text>
+<text x="428" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">123</text>
+<rect x="480" y="274" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="488" y="289" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">28</text>
+<text x="488" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">011100</text>
+<text x="542" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">130</text>
+<rect x="594" y="274" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="602" y="289" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">29</text>
+<text x="602" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">011101</text>
+<text x="656" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">131</text>
+<rect x="708" y="274" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="716" y="289" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">30</text>
+<text x="716" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">011110</text>
+<text x="770" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">132</text>
+<rect x="822" y="274" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="830" y="289" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">31</text>
+<text x="830" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">011111</text>
+<text x="884" y="306" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">133</text>
+<rect x="24" y="336" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="32" y="351" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">32</text>
+<text x="32" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">100000</text>
+<text x="86" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">200</text>
+<rect x="138" y="336" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="146" y="351" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">33</text>
+<text x="146" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">100001</text>
+<text x="200" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">201</text>
+<rect x="252" y="336" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="260" y="351" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">34</text>
+<text x="260" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">100010</text>
+<text x="314" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">202</text>
+<rect x="366" y="336" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="374" y="351" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">35</text>
+<text x="374" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">100011</text>
+<text x="428" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">203</text>
+<rect x="480" y="336" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="488" y="351" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">36</text>
+<text x="488" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">100100</text>
+<text x="542" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">210</text>
+<rect x="594" y="336" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="602" y="351" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">37</text>
+<text x="602" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">100101</text>
+<text x="656" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">211</text>
+<rect x="708" y="336" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="716" y="351" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">38</text>
+<text x="716" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">100110</text>
+<text x="770" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">212</text>
+<rect x="822" y="336" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="830" y="351" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">39</text>
+<text x="830" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">100111</text>
+<text x="884" y="368" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">213</text>
+<rect x="24" y="398" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="32" y="413" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">40</text>
+<text x="32" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">101000</text>
+<text x="86" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">220</text>
+<rect x="138" y="398" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="146" y="413" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">41</text>
+<text x="146" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">101001</text>
+<text x="200" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">221</text>
+<rect x="252" y="398" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="260" y="413" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">42</text>
+<text x="260" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">101010</text>
+<text x="314" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">222</text>
+<rect x="366" y="398" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="374" y="413" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">43</text>
+<text x="374" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">101011</text>
+<text x="428" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">223</text>
+<rect x="480" y="398" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="488" y="413" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">44</text>
+<text x="488" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">101100</text>
+<text x="542" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">230</text>
+<rect x="594" y="398" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="602" y="413" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">45</text>
+<text x="602" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">101101</text>
+<text x="656" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">231</text>
+<rect x="708" y="398" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="716" y="413" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">46</text>
+<text x="716" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">101110</text>
+<text x="770" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">232</text>
+<rect x="822" y="398" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="830" y="413" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">47</text>
+<text x="830" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">101111</text>
+<text x="884" y="430" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">233</text>
+<rect x="24" y="460" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="32" y="475" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">48</text>
+<text x="32" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">110000</text>
+<text x="86" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">300</text>
+<rect x="138" y="460" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="146" y="475" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">49</text>
+<text x="146" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">110001</text>
+<text x="200" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">301</text>
+<rect x="252" y="460" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="260" y="475" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">50</text>
+<text x="260" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">110010</text>
+<text x="314" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">302</text>
+<rect x="366" y="460" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="374" y="475" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">51</text>
+<text x="374" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">110011</text>
+<text x="428" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">303</text>
+<rect x="480" y="460" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="488" y="475" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">52</text>
+<text x="488" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">110100</text>
+<text x="542" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">310</text>
+<rect x="594" y="460" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="602" y="475" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">53</text>
+<text x="602" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">110101</text>
+<text x="656" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">311</text>
+<rect x="708" y="460" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="716" y="475" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">54</text>
+<text x="716" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">110110</text>
+<text x="770" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">312</text>
+<rect x="822" y="460" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="830" y="475" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">55</text>
+<text x="830" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">110111</text>
+<text x="884" y="492" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">313</text>
+<rect x="24" y="522" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="32" y="537" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">56</text>
+<text x="32" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">111000</text>
+<text x="86" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">320</text>
+<rect x="138" y="522" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="146" y="537" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">57</text>
+<text x="146" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">111001</text>
+<text x="200" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">321</text>
+<rect x="252" y="522" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="260" y="537" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">58</text>
+<text x="260" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">111010</text>
+<text x="314" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">322</text>
+<rect x="366" y="522" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="374" y="537" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">59</text>
+<text x="374" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">111011</text>
+<text x="428" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">323</text>
+<rect x="480" y="522" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="488" y="537" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">60</text>
+<text x="488" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">111100</text>
+<text x="542" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">330</text>
+<rect x="594" y="522" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="602" y="537" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">61</text>
+<text x="602" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">111101</text>
+<text x="656" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">331</text>
+<rect x="708" y="522" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="716" y="537" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">62</text>
+<text x="716" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">111110</text>
+<text x="770" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">332</text>
+<rect x="822" y="522" width="102" height="50" rx="6" fill="#ffffff" stroke="#334155"/>
+<text x="830" y="537" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748b">63</text>
+<text x="830" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#0f172a">111111</text>
+<text x="884" y="554" font-family="ui-monospace, Menlo, monospace" font-size="14" fill="#0369a1">333</text>
+</svg>

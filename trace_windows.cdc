@@ -18,6 +18,7 @@ witness trace-coupled-observation invariant=trace-order-locality claim="observer
 witness trace-recursive-policy invariant=trace-order-locality claim="window policy may adapt projection without new primitive"
 witness trace-shared-state-commit invariant=soundness claim="measurement commits a shared ternary boundary state"
 witness trace-agency-spectrum invariant=existence-viability claim="the same scope can be passive reactive intentional or self-referential by policy"
+witness trace-bridge-coordinate invariant=dyadic-triadic-closure claim="trace committed occupancy projects through bridge64 coordinate"
 
 expect witness trace-additivity
 expect witness trace-passive-state
@@ -37,3 +38,4 @@ expect witness trace-coupled-observation
 expect witness trace-recursive-policy
 expect witness trace-shared-state-commit
 expect witness trace-agency-spectrum
+expect witness trace-bridge-coordinate

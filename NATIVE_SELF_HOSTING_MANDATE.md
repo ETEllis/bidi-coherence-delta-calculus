@@ -17,9 +17,15 @@ substrate.
 
 ## Current Host Boundary
 
-As of v0.2.1, host code is restricted to one file:
+As of v0.2.2, host code is restricted to one Python file:
 
 - `cdc_boot.py`: minimal loader/checker for native `.cdc` declarations.
+
+The bridge also has a non-Python operational consumer:
+
+- `runtime/cdc_bridge_runtime.c`: reads `bridge64.cdc`, validates the finite
+  codebook, performs dyadic/triadic lookup, projects six-trit trace occupancy
+  into bridge coordinates, and emits grid/SVG output.
 
 All reducer semantics, invariants, capability claims, and witness obligations
 must be expressed as `.cdc` declarations. The bootloader may parse, collect, and
@@ -89,7 +95,7 @@ native contract.
 
 Move law, relation, acceptance, and trace/window witnesses into `.cdc`.
 
-Status: complete for v0.2.1. Verification now invokes `.cdc` files and checks
+Status: complete for v0.2.2. Verification now invokes `.cdc` files and checks
 their declared expectations.
 
 ### Gate 4: Host Loader Collapse
@@ -97,7 +103,7 @@ their declared expectations.
 Collapse former reducer, semantic-registry, law, acceptance, relation, and
 trace/window host modules into native `.cdc` sources.
 
-Status: complete for v0.2.1. The only remaining host artifact is `cdc_boot.py`,
+Status: complete for v0.2.2. The only remaining Python host artifact is `cdc_boot.py`,
 and its behavior is fully specified by `kernel.cdc` expectations.
 
 ### Gate 5: Host Removal Or Replacement
@@ -115,6 +121,11 @@ Candidate directions:
 
 Acceptance: the repository can verify the language without expanding beyond the
 minimal bootloader.
+
+Status: partial concrete pilot for v0.2.2. The bridge no longer depends on
+Python for operational lookup: `runtime/cdc_bridge_runtime.c` consumes
+`bridge64.cdc` directly. This does not yet replace the full declaration
+bootloader or implement the complete native reducer.
 
 ## Immediate Rule
 

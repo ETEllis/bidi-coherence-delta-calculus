@@ -13,7 +13,7 @@ verification.
 | Claim | Current native witness | Formal obligation |
 |---|---|---|
 | balanced-ternary carrier | `laws.cdc` declares carrier witnesses | finite codomain proof for `commit` |
-| dyadic/triadic bridge closure | `laws.cdc` declares the invariant and `bridge64.cdc` declares all 64 dyadic/triadic rows | finite uniqueness/bijection proof for bootstrap codebook |
+| dyadic/triadic bridge closure | `laws.cdc` declares the invariant; `bridge64.cdc` declares all 64 rows; `runtime/cdc_bridge_runtime.c` consumes and validates them | finite uniqueness/bijection proof for bootstrap codebook |
 | existence viability | `laws.cdc`, `relations.cdc`, and `trace_windows.cdc` declare viability witnesses | viability invariant over bounded continuity, permeability, and transition capacity |
 | trace-order locality | `laws.cdc`, `relations.cdc`, and `trace_windows.cdc` declare local trace, local-counter, detuning, overlap, and recursive-policy witnesses | partial-order theorem for causal trace windows, local event counters, and projection policy |
 | gate is abelian | `laws.cdc` declares associativity, commutativity, identity, inverse witnesses | algebraic group proof over torus carrier |
@@ -27,6 +27,7 @@ verification.
 | normal forms | `laws.cdc` declares localized normal-form witness | finite normalization proof over balanced trit walks |
 | angular/path relation | `relations.cdc` declares angle, lines, path endpoints, and nesting-cone witnesses | path-indexed relation algebra |
 | trace/window layer | `trace_windows.cdc` declares passive/committing separation, role-relative observer, incidence boundary, coupled-observer, shared-state commit, and causal-window witnesses | derived-observer theorem over flow/commit/nest |
+| bridge coordinate runtime | `system.cdc` declares `G1`; `scripts/verify.sh` compiles the C runtime and checks lookup, trace projection, higher arity, and grid generation | native `.cdc` reducer or extracted kernel replacing the C bridge pilot |
 | native language center | `kernel.cdc` declares terms, rules, capabilities, witness counts, and one-file Python boundary | native reducer expressed in `.cdc` |
 
 ## First Mechanized Target

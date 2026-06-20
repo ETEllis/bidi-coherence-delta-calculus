@@ -24,6 +24,7 @@ capability E3 label="same-primitives-multiple-regimes"
 capability F1 label="operators-in-flowing-field"
 capability F2 label="scale-relative-operator-socialization"
 capability F3 label="bidi-maintains-coherent-frames"
+capability G1 label="operational-bridge-runtime"
 
 witness A1-native-primitives capability=A1 claim="cell/channel/module/field/commit/bidi-gamma-delta are native terms"
 witness A2-host-free-spec capability=A2 claim="formal core names primitives without host-language dependence"
@@ -49,6 +50,7 @@ witness E3-one-program capability=E3 claim="one field source can combine flow an
 witness F1-operators capability=F1 claim="gate/interfere/corefold/commit operate inside field"
 witness F2-scale-operators capability=F2 claim="operator influence is boundary-gated"
 witness F3-bidi-frames capability=F3 claim="bidi-gamma-delta preserves multiple coherent frames"
+witness G1-bridge-runtime capability=G1 claim="non-Python runtime consumes bridge64.cdc as lookup table"
 
 expect capability A1
 expect capability A2
@@ -74,3 +76,4 @@ expect capability E3
 expect capability F1
 expect capability F2
 expect capability F3
+expect capability G1

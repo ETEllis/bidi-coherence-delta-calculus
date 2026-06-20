@@ -1,7 +1,7 @@
 # The `.cdc` Language
 ### Native source format for the Coherence-Delta Calculus
 
-`.cdc` is the native language surface for the calculus kernel. In v0.2.1 the
+`.cdc` is the native language surface for the calculus kernel. In v0.2.2 the
 checked surface is a native declaration and witness format: terms, reducer
 rules, invariants, capabilities, witnesses, and expectations are expressed in
 `.cdc`; Python is limited to the small `cdc_boot.py` loader/checker.
@@ -73,10 +73,12 @@ expect witness <witness-id>
 | `kernel.cdc` | language terms, reducer rules, provided capabilities, bootloader boundary, and global expectations |
 | `laws.cdc` | invariant registry and 22 law/metatheorem witness declarations |
 | `bridge64.cdc` | explicit 64-row `2^6 = 4^3` dyadic/triadic bootstrap codebook |
-| `system.cdc` | 24 capability declarations and native witness handles |
+| `bridge_codebooks.cdc` | higher-arity bridge declarations for `n=9` and `n=12` |
+| `system.cdc` | 25 capability declarations and native witness handles |
 | `relations.cdc` | angular, projected, cross-scale, detuning, and overlap relation witness handles |
 | `trace_windows.cdc` | balanced-ternary trace/window, local-counter, coupled-observer, and recursive-policy witness handles |
 | `cdc_boot.py` | minimal loader/checker; not the reducer or language semantics |
+| `runtime/cdc_bridge_runtime.c` | non-Python bridge consumer for lookup, trace projection, grid output, and finite validation |
 
 ## Balanced Ternary Carrier
 
@@ -107,6 +109,7 @@ counter <name>
 trace <window>
 measure <observer> <target>
 policy <window> sampling=<mode> commit=<mode> adapt=<mode>
+bridge <field-or-trace> via=<codebook>
 ```
 
 Those forms are part of the calculus language design. They should be reintroduced

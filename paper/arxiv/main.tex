@@ -260,8 +260,10 @@ permitting localized count is $51$.
 Together, the four bridge/carrier/existence/trace invariants, four algebraic
 invariants, and five reduction invariants make the 13-key semantic registry
 exercised by the native bootloader. The witness suite reports 13/13 invariant
-keys, 143/143 native \texttt{.cdc} expectations, 136/136 native witnesses, and
-24/24 capability declarations.
+keys, 148/148 native \texttt{.cdc} expectations, 140/140 native witnesses, and
+25/25 capability declarations. The bridge runtime also compiles as C and consumes
+\texttt{bridge64.cdc} for lookup, trace-coordinate projection, higher-arity
+codebook checks, and grid generation.
 
 \section{Native Source Language}
 
@@ -310,6 +312,8 @@ The repository contains:
 \item \texttt{cdc\_boot.py}: minimal \texttt{.cdc} bootloader/checker;
 \item \texttt{laws.cdc}: native invariant and law/metatheorem witnesses;
 \item \texttt{bridge64.cdc}: explicit 64-row dyadic/triadic bridge codebook;
+\item \texttt{bridge\_codebooks.cdc}: higher-arity bridge declarations;
+\item \texttt{runtime/cdc\_bridge\_runtime.c}: non-Python bridge runtime;
 \item \texttt{system.cdc}: native capability witnesses;
 \item \texttt{relations.cdc}: angular/path relation witnesses;
 \item \texttt{trace\_windows.cdc}: balanced-ternary observer-window witnesses.

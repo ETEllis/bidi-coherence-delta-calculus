@@ -167,9 +167,13 @@ semantics back into Python.
 
 ### Native Witness Files
 
-`laws.cdc`, `bridge64.cdc`, `system.cdc`, `relations.cdc`, and
-`trace_windows.cdc` should remain the native witness surface. Each witness
-declares the invariant or capability it discharges.
+`laws.cdc`, `bridge64.cdc`, `bridge_codebooks.cdc`, `system.cdc`,
+`relations.cdc`, and `trace_windows.cdc` should remain the native witness
+surface. Each witness declares the invariant or capability it discharges.
+
+`runtime/cdc_bridge_runtime.c` is the first operational consumer outside Python:
+it reads `bridge64.cdc`, validates the finite table, performs lookup, projects
+trace occupancy into bridge coordinates, and emits the visible 64-cell grid.
 
 ### Paper
 
@@ -195,8 +199,10 @@ explicit Lipschitz/determinism assumptions.
 - `cdc_boot.py` remains a minimal loader/checker and does not accumulate reducer semantics.
 - `kernel.cdc` grows from contract declarations into native reducer
   clauses.
-- `bridge64.cdc` stays as the explicit finite bootstrap codebook and becomes the
-  first theorem-prover totality/uniqueness target.
+- `bridge64.cdc` stays as the explicit finite bootstrap codebook and the C
+  bridge runtime stays a verified consumer of that source.
+- `bridge_codebooks.cdc` records the higher-arity growth rule for `n=9` and
+  `n=12`; generated rows or a native arity rule can follow.
 - relation witnesses cover angular phase, dimension projection, path endpoints,
   and `.cdc` nesting auto-cone installation.
 - trace/window witnesses cover passive observation, committing measurement,

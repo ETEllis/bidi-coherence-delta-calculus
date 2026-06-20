@@ -2,7 +2,7 @@
 
 Date: 2026-06-18
 
-Status: public engineering specification, v0.2.1.
+Status: public engineering specification, v0.2.2.
 
 BiDi Coherence-Delta Calculus is a native `.cdc` language with a formal
 coherence-calculus kernel for hybrid systems that need continuous dynamics,
@@ -52,8 +52,9 @@ The current repository has one host artifact: `cdc_boot.py`. It is a loader and
 native contract checker. It does not expose reducer classes, runtime objects, or
 law logic. A conforming implementation must preserve the native `.cdc` terms,
 rules, invariants, capabilities, witnesses, and expectations declared in
-`kernel.cdc`, `laws.cdc`, `bridge64.cdc`, `system.cdc`, `relations.cdc`, and
-`trace_windows.cdc`.
+`kernel.cdc`, `laws.cdc`, `bridge64.cdc`, `bridge_codebooks.cdc`,
+`system.cdc`, `relations.cdc`, and `trace_windows.cdc`. The bridge codebook is
+also consumed by the non-Python runtime `runtime/cdc_bridge_runtime.c`.
 
 ## Native Language Target
 
@@ -68,7 +69,9 @@ of the desired semantic substrate.
 `kernel.cdc` is the first native self-hosting contract. It declares the terms,
 rules, capability surface, balanced-ternary carrier, and remaining bootloader
 boundary that future passes must burn down. `bridge64.cdc` is the explicit
-64-row `2^6 = 4^3` dyadic/triadic bridge codebook. The end
+64-row `2^6 = 4^3` dyadic/triadic bridge codebook, and
+`runtime/cdc_bridge_runtime.c` consumes it for lookup, trace-coordinate
+projection, and grid generation. The end
 state is not "Python runs `.cdc`"; it is "`.cdc` contains its own
 parser/reducer/witness semantics, with a minimal replaceable runtime beneath it."
 For this release, Python remains only as the deliberately temporary bootloader
@@ -425,14 +428,15 @@ The `system.cdc` native capability witnesses cover:
 | F | Gate/interfere/Core-fold, scale-gated operators, multiscale coherence under load |
 | G | balanced-ternary trace/window measurement, causal observer windows, projected boundaries |
 
-Local run result for v0.2.1:
+Local run result for v0.2.2:
 
 ```text
 1/1 Python bootloader file
-143/143 native .cdc expectations
+148/148 native .cdc expectations
 13/13 invariant declarations
-24/24 capability declarations
-136/136 native witness declarations
+25/25 capability declarations
+140/140 native witness declarations
+operational bridge runtime: lookup/projection/codebook/grid checks pass
 ```
 
 The witnesses are native contract witnesses. They prove coverage of the listed

@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>A native language with a formal coherence-calculus kernel</strong><br>
-  Continuous flow • Balanced-ternary commits • Delayed angular channels • Trace/window measurement • Executable coherence invariants
+  Continuous flow • Balanced-ternary commits • Delayed angular channels • Operational bridge coordinates • Trace/window measurement
 </p>
 
 BiDi Coherence-Delta Calculus is a native `.cdc` language whose semantic kernel
@@ -32,6 +32,8 @@ That gives the project two separate success stories:
 
 The only Python file left is `cdc_boot.py`, a minimal bootloader that reads
 native `.cdc` declarations and verifies expectations. It is not the calculus.
+The 64-state bridge has a separate non-Python runtime in
+`runtime/cdc_bridge_runtime.c` that consumes `bridge64.cdc` as a lookup table.
 
 ## Native Status
 
@@ -47,7 +49,8 @@ contract.
 
 ## Installation & Exploration
 
-Requires Python ≥ 3.10. Zero runtime dependencies.
+Requires Python >= 3.10 and a C compiler (`cc`) for the full verification gate.
+There are no package dependencies.
 
 ```bash
 git clone https://github.com/ETEllis/bidi-coherence-delta-calculus.git
@@ -111,6 +114,7 @@ This calculus supplies one shared, executable vocabulary and verified reference 
 - **Balanced-ternary carrier** — committed values are `-1 / 0 / +1` around real equilibrium, not binary false/true labels.
 - **Existence viability** — frames persist by preserving bounded coherent continuity while retaining mode-appropriate transition capacity.
 - **64-state dyadic/triadic bridge** — `bridge64.cdc` declares every `2^6 = 4^3 = 64` codebook row for bootstrap/runtime bridge design.
+- **Operational bridge runtime** — `runtime/cdc_bridge_runtime.c` parses `bridge64.cdc`, verifies bijection, performs dyadic/triadic lookup, projects trace trits into bridge coordinates, and emits a 64-cell grid/SVG.
 - **Trit-walk barrier + nonnegative balance** — clean discrete guard preventing rank violation on continuous-to-discrete quantization.
 - **Native free-energy witnesses** — commits are guarded against Φ increase; continuous flow has explicit subset obligations.
 - **`.cdc` literate DSL** — single source format declaring fields, modules, channels, guards, flows, and proof obligations.
@@ -120,15 +124,16 @@ This calculus supplies one shared, executable vocabulary and verified reference 
 Core metatheorems and bridge invariants are witnessed by native `.cdc`, with
 the finite discrete layer positioned as the first theorem-prover target.
 
-## Verification Status (v0.2.1)
+## Verification Status (v0.2.2)
 
 The package passes 100%:
 
 - 1/1 Python bootloader file: `cdc_boot.py`
-- 143/143 native `.cdc` expectations
+- 148/148 native `.cdc` expectations
 - 13/13 native invariant declarations
-- 24/24 native capability declarations
-- 136/136 native witness declarations
+- 25/25 native capability declarations
+- 140/140 native witness declarations
+- C bridge runtime compile, lookup, trace-coordinate, higher-arity, and grid/SVG checks
 - Paper compile through `tectonic` when available
 
 Run the full gate anytime:
@@ -147,9 +152,30 @@ kernel bidi stage=2 target=cdc
   bootloader read-source parse-lines collect-native-declarations verify-expectations report
   expect native substrate == cdc
   expect python-files == 1
-  expect witnesses >= 136
+  expect witnesses >= 140
 end
 ```
+
+## Operational Bridge
+
+<p align="center">
+  <img src="assets/bridge64-grid.svg" alt="bridge64 dyadic and triadic codebook grid" width="760">
+</p>
+
+The bridge is operational, not only declared:
+
+```bash
+build/cdc_bridge_runtime verify bridge64.cdc
+build/cdc_bridge_runtime lookup-dyadic bridge64.cdc 101011
+build/cdc_bridge_runtime lookup-triadic bridge64.cdc 223
+build/cdc_bridge_runtime project-trits bridge64.cdc '+0-+0-' council
+build/cdc_bridge_runtime codebook 9
+build/cdc_bridge_runtime codebook 12
+```
+
+`./scripts/verify.sh` compiles the runtime, runs those checks, and confirms that
+the tracked 64-cell SVG matches runtime output. Details are in
+`BRIDGE_RUNTIME.md`.
 
 ## Paper
 
