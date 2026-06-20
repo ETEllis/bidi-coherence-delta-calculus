@@ -286,7 +286,7 @@ the maximal-compression form.
 
 The v0.2.2 repository expresses the term syntax, invariant registry, capability
 surface, and witness suite in native `.cdc`: `kernel.cdc`, `laws.cdc`,
-`bridge64.cdc`, `bridge_codebooks.cdc`, `system.cdc`, `relations.cdc`, and
+`bridge64.cdc`, `bridge_codebooks.cdc`, `bridge_jobs.cdc`, `system.cdc`, `relations.cdc`, and
 `trace_windows.cdc`. The only Python file is `cdc_boot.py`, a minimal
 loader/checker. The bridge has a separate C runtime that consumes `bridge64.cdc`
 for lookup, trace-coordinate projection, and grid generation. The burn-down path

@@ -54,6 +54,7 @@ case "$trace_projection" in
   *) echo "unexpected trace projection: $trace_projection" >&2; exit 1 ;;
 esac
 
+build/cdc_bridge_runtime run-jobs bridge64.cdc bridge_jobs.cdc
 build/cdc_bridge_runtime codebook 9
 build/cdc_bridge_runtime codebook 12
 build/cdc_bridge_runtime grid bridge64.cdc > build/bridge64-grid.txt

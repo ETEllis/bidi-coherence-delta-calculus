@@ -27,7 +27,7 @@ verification.
 | normal forms | `laws.cdc` declares localized normal-form witness | finite normalization proof over balanced trit walks |
 | angular/path relation | `relations.cdc` declares angle, lines, path endpoints, and nesting-cone witnesses | path-indexed relation algebra |
 | trace/window layer | `trace_windows.cdc` declares passive/committing separation, role-relative observer, incidence boundary, coupled-observer, shared-state commit, and causal-window witnesses | derived-observer theorem over flow/commit/nest |
-| bridge coordinate runtime | `system.cdc` declares `G1`; `scripts/verify.sh` compiles the C runtime and checks lookup, trace projection, higher arity, and grid generation | native `.cdc` reducer or extracted kernel replacing the C bridge pilot |
+| bridge coordinate runtime | `system.cdc` declares `G1`; `bridge_jobs.cdc` declares coordinate jobs; `scripts/verify.sh` compiles the C runtime and checks lookup, source-declared jobs, higher arity, and grid generation | native `.cdc` reducer or extracted kernel replacing the C bridge pilot |
 | native language center | `kernel.cdc` declares terms, rules, capabilities, witness counts, and one-file Python boundary | native reducer expressed in `.cdc` |
 
 ## First Mechanized Target

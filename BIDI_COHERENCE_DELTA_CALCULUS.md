@@ -53,6 +53,7 @@ native contract checker. It does not expose reducer classes, runtime objects, or
 law logic. A conforming implementation must preserve the native `.cdc` terms,
 rules, invariants, capabilities, witnesses, and expectations declared in
 `kernel.cdc`, `laws.cdc`, `bridge64.cdc`, `bridge_codebooks.cdc`,
+`bridge_jobs.cdc`,
 `system.cdc`, `relations.cdc`, and `trace_windows.cdc`. The bridge codebook is
 also consumed by the non-Python runtime `runtime/cdc_bridge_runtime.c`.
 
@@ -432,10 +433,10 @@ Local run result for v0.2.2:
 
 ```text
 1/1 Python bootloader file
-148/148 native .cdc expectations
+150/150 native .cdc expectations
 13/13 invariant declarations
 25/25 capability declarations
-140/140 native witness declarations
+142/142 native witness declarations
 operational bridge runtime: lookup/projection/codebook/grid checks pass
 ```
 

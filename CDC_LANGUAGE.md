@@ -74,6 +74,7 @@ expect witness <witness-id>
 | `laws.cdc` | invariant registry and 22 law/metatheorem witness declarations |
 | `bridge64.cdc` | explicit 64-row `2^6 = 4^3` dyadic/triadic bootstrap codebook |
 | `bridge_codebooks.cdc` | higher-arity bridge declarations for `n=9` and `n=12` |
+| `bridge_jobs.cdc` | source-declared bridge-coordinate jobs consumed by the C runtime |
 | `system.cdc` | 25 capability declarations and native witness handles |
 | `relations.cdc` | angular, projected, cross-scale, detuning, and overlap relation witness handles |
 | `trace_windows.cdc` | balanced-ternary trace/window, local-counter, coupled-observer, and recursive-policy witness handles |

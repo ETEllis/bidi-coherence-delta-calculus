@@ -167,13 +167,14 @@ semantics back into Python.
 
 ### Native Witness Files
 
-`laws.cdc`, `bridge64.cdc`, `bridge_codebooks.cdc`, `system.cdc`,
+`laws.cdc`, `bridge64.cdc`, `bridge_codebooks.cdc`, `bridge_jobs.cdc`, `system.cdc`,
 `relations.cdc`, and `trace_windows.cdc` should remain the native witness
 surface. Each witness declares the invariant or capability it discharges.
 
 `runtime/cdc_bridge_runtime.c` is the first operational consumer outside Python:
 it reads `bridge64.cdc`, validates the finite table, performs lookup, projects
-trace occupancy into bridge coordinates, and emits the visible 64-cell grid.
+trace occupancy into bridge coordinates, executes source-declared jobs from
+`bridge_jobs.cdc`, and emits the visible 64-cell grid.
 
 ### Paper
 

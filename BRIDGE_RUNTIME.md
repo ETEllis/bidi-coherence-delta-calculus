@@ -27,6 +27,7 @@ build/cdc_bridge_runtime verify bridge64.cdc
 build/cdc_bridge_runtime lookup-dyadic bridge64.cdc 101011
 build/cdc_bridge_runtime lookup-triadic bridge64.cdc 223
 build/cdc_bridge_runtime project-trits bridge64.cdc '+0-+0-' council
+build/cdc_bridge_runtime run-jobs bridge64.cdc bridge_jobs.cdc
 build/cdc_bridge_runtime grid bridge64.cdc
 build/cdc_bridge_runtime grid-svg bridge64.cdc > build/bridge64-grid.svg
 build/cdc_bridge_runtime codebook 9
@@ -45,6 +46,10 @@ That occupancy vector is then looked up in `bridge64.cdc`. This is not a lossles
 encoding of the full `3^6` balanced-ternary state. It is the bridge coordinate
 for committed/non-open occupancy, which is exactly the finite `2^6 = 4^3`
 surface the codebook names.
+
+`bridge_jobs.cdc` declares source-level jobs for the runtime to execute. The
+current jobs cover a council channel and a trace window. Verification fails if
+the projected coordinate does not match the expected dyadic and triadic values.
 
 ## Higher-Arity Growth
 

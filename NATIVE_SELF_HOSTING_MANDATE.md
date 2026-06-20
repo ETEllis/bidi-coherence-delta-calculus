@@ -25,7 +25,7 @@ The bridge also has a non-Python operational consumer:
 
 - `runtime/cdc_bridge_runtime.c`: reads `bridge64.cdc`, validates the finite
   codebook, performs dyadic/triadic lookup, projects six-trit trace occupancy
-  into bridge coordinates, and emits grid/SVG output.
+  into bridge coordinates, executes `bridge_jobs.cdc`, and emits grid/SVG output.
 
 All reducer semantics, invariants, capability claims, and witness obligations
 must be expressed as `.cdc` declarations. The bootloader may parse, collect, and
@@ -88,8 +88,8 @@ capability, and witness objects without a Python semantic registry.
 Encode the reducer as `.cdc` transition rules over explicit state records.
 
 Acceptance: native `.cdc` owns `kernel.cdc`, `laws.cdc`, `bridge64.cdc`,
-`system.cdc`, `relations.cdc`, and trace/window witness scenarios through the
-native contract.
+`bridge_codebooks.cdc`, `bridge_jobs.cdc`, `system.cdc`, `relations.cdc`, and
+trace/window witness scenarios through the native contract.
 
 ### Gate 3: Native Witness Harness
 

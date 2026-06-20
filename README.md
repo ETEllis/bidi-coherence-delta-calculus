@@ -129,10 +129,10 @@ the finite discrete layer positioned as the first theorem-prover target.
 The package passes 100%:
 
 - 1/1 Python bootloader file: `cdc_boot.py`
-- 148/148 native `.cdc` expectations
+- 150/150 native `.cdc` expectations
 - 13/13 native invariant declarations
 - 25/25 native capability declarations
-- 140/140 native witness declarations
+- 142/142 native witness declarations
 - C bridge runtime compile, lookup, trace-coordinate, higher-arity, and grid/SVG checks
 - Paper compile through `tectonic` when available
 
@@ -152,7 +152,7 @@ kernel bidi stage=2 target=cdc
   bootloader read-source parse-lines collect-native-declarations verify-expectations report
   expect native substrate == cdc
   expect python-files == 1
-  expect witnesses >= 140
+  expect witnesses >= 142
 end
 ```
 
@@ -169,6 +169,7 @@ build/cdc_bridge_runtime verify bridge64.cdc
 build/cdc_bridge_runtime lookup-dyadic bridge64.cdc 101011
 build/cdc_bridge_runtime lookup-triadic bridge64.cdc 223
 build/cdc_bridge_runtime project-trits bridge64.cdc '+0-+0-' council
+build/cdc_bridge_runtime run-jobs bridge64.cdc bridge_jobs.cdc
 build/cdc_bridge_runtime codebook 9
 build/cdc_bridge_runtime codebook 12
 ```

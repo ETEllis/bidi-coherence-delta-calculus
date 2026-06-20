@@ -305,6 +305,64 @@ static void cmd_codebook(const char *arity_text) {
     printf("row-format dyadic=<%d binary digits> triadic=<3 base-%llu digits>\n", arity, base);
 }
 
+static void cmd_run_jobs(const char *bridge_path, const char *jobs_path) {
+    BridgeRow rows[BRIDGE64_ROWS];
+    FILE *fp = fopen(jobs_path, "r");
+    char line[LINE_MAX_BYTES];
+    int count = 0;
+
+    if (!fp) {
+        fail("could not open bridge jobs file");
+    }
+    load_bridge64(bridge_path, rows);
+
+    while (fgets(line, sizeof(line), fp)) {
+        char witness[64];
+        char trits[32];
+        char expected_dyadic_attr[16];
+        char expected_triadic_attr[16];
+        char window[64];
+        char job[64];
+        char actual_dyadic[7];
+        int index;
+
+        trim_newline(line);
+        if (!starts_with(line, "witness ")) {
+            continue;
+        }
+        if (!read_attr(line, "job", job, sizeof(job)) || strcmp(job, "bridge-coordinate") != 0) {
+            continue;
+        }
+
+        first_token_after(line, "witness ", witness, sizeof(witness));
+        if (!read_attr(line, "trits", trits, sizeof(trits)) ||
+            !read_attr(line, "expect-dyadic", expected_dyadic_attr, sizeof(expected_dyadic_attr)) ||
+            !read_attr(line, "expect-triadic", expected_triadic_attr, sizeof(expected_triadic_attr))) {
+            fail("bridge-coordinate job missing trits or expected coordinate");
+        }
+        if (!read_attr(line, "window", window, sizeof(window))) {
+            snprintf(window, sizeof(window), "%s", "trace");
+        }
+
+        trits_to_dyadic(trits, actual_dyadic);
+        index = dyadic_index(actual_dyadic);
+        if (strcmp(actual_dyadic, expected_dyadic_attr) != 0 ||
+            strcmp(rows[index].triadic, expected_triadic_attr) != 0) {
+            fail("bridge-coordinate job expectation mismatch");
+        }
+
+        printf("job=%s window=%s trits=%s dyadic=%s triadic=%s witness=%s\n",
+               witness, window, trits, actual_dyadic, rows[index].triadic, rows[index].witness);
+        count++;
+    }
+
+    fclose(fp);
+    if (count == 0) {
+        fail("no bridge-coordinate jobs found");
+    }
+    printf("bridge-coordinate jobs ok count=%d source=%s\n", count, jobs_path);
+}
+
 static void usage(void) {
     fprintf(stderr, "usage:\n");
     fprintf(stderr, "  cdc_bridge_runtime verify bridge64.cdc\n");
@@ -314,6 +372,7 @@ static void usage(void) {
     fprintf(stderr, "  cdc_bridge_runtime grid bridge64.cdc\n");
     fprintf(stderr, "  cdc_bridge_runtime grid-svg bridge64.cdc\n");
     fprintf(stderr, "  cdc_bridge_runtime codebook 9\n");
+    fprintf(stderr, "  cdc_bridge_runtime run-jobs bridge64.cdc bridge_jobs.cdc\n");
     exit(2);
 }
 
@@ -335,6 +394,8 @@ int main(int argc, char **argv) {
         cmd_grid_svg(argv[2]);
     } else if (strcmp(argv[1], "codebook") == 0 && argc == 3) {
         cmd_codebook(argv[2]);
+    } else if (strcmp(argv[1], "run-jobs") == 0 && argc == 4) {
+        cmd_run_jobs(argv[2], argv[3]);
     } else {
         usage();
     }
