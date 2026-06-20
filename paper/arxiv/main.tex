@@ -161,7 +161,7 @@ $F\commit F'$ applies an evented guarded update to a module:
 \item phase cells snap fractionally toward committed poles;
 \item a nonnegative prefix-walk invariant is enforced over trits;
 \item belief steps toward local evidence;
-\item the update is rejected if local free energy increases;
+\item the update is accepted or held with an explicit commit-time status;
 \item committed nonzero trits latch persistent poles.
 \end{enumerate}
 
@@ -224,17 +224,35 @@ The remaining five registry keys are reduction and metatheorem invariants. They
 are intentionally phrased as native witness declarations rather than completed
 proof-assistant theorems.
 
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+Status & Check & Current surface\\
+\midrule
+proved & mechanized or exhaustive & $n=6$ counts; finite Lean/Rocq mirrors\\
+witnessed & native \texttt{.cdc} link & law registry; trace/window; reducer links\\
+runtime-checked & repository gate execution & bridge; accepted/held commits; paper\\
+queued & future proof or parity & continuous flow; arbitrary $n=3k$; live WASM\\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \begin{claim}[Preservation]
-Every guarded commit produces an admissible committed module: the prefix walk of
-runtime trits never goes negative.
+Every accepted guarded commit produces an admissible committed module: the
+prefix walk of runtime trits never goes negative. A balance-violating proposal is
+held and reported with an explicit reason rather than repaired into state.
 \end{claim}
 
 The native witness registry records both the carrier enumeration obligation and
 the commit-preservation obligation.
 
 \begin{claim}[Commit soundness]
-The commit relation never increases local free energy because the guard holds
-instead of accepting a free-energy-increasing update.
+Commit-time guard soundness is separated from continuous numerical trajectory
+error: accepted commits latch only checked proposals, while rejected proposals
+hold instead of mutating state. The broader free-energy Lyapunov theorem remains
+witnessed for staged guard/subset obligations rather than claimed as a completed
+continuous proof.
 \end{claim}
 
 \begin{claim}[Local confluence]
@@ -261,11 +279,13 @@ permitting localized count is $51$.
 Together, the four bridge/carrier/existence/trace invariants, four algebraic
 invariants, and five reduction invariants make the 13-key semantic registry
 exercised by the native bootloader. The witness suite reports 13/13 invariant
-keys, 176/176 native \texttt{.cdc} expectations, 4765/4765 native witnesses, and
+keys, 177/177 native \texttt{.cdc} expectations, 4766/4766 native witnesses, and
 32/32 capability declarations. The bridge runtime also compiles as C and consumes
 \texttt{bridge64.cdc} for lookup, trace-coordinate projection, generated
 higher-arity codebook checks, source-declared bridge jobs, and interactive grid
-generation. The native reducer runtime consumes \nolinkurl{native_reducer.cdc}
+generation. The verified bootstrap bridge is \texttt{n=6}; \texttt{n=9} and
+\texttt{n=12} are generated and runtime-checked bridge surfaces, while arbitrary
+$n=3k$ generation is queued as a future proof/generator obligation. The native reducer runtime consumes \nolinkurl{native_reducer.cdc}
 for flow, commit, nest, compile-IR, IR interpretation, and finite proof jobs,
 consumes \nolinkurl{native_surface.cdc} for guard, trace, measure, policy,
 bridge, and counter jobs,
@@ -285,9 +305,10 @@ cell council.a module=council theta=1.5707963267948966 omega=0.0
 cell council.b module=council theta=0.0 omega=0.0
 channel council.a -> council.b weight=0.25 delay=0.0 angle=0.0 lines=1
 flow reducer-flow field=reducer-field duration=1.0 expect-theta=council.b:0.25
-commit reducer-commit module=council expect-trits=0+- expect-balance=admissible
-compile reducer-ir source=native_reducer.cdc expect-ops=3
-interpret reducer-ir-exec source=native_reducer.cdc expect-ops=3
+commit reducer-commit module=council expect-trits=0+- expect-balance=admissible expect-status=accepted expect-reason=none
+commit reducer-hold module=holdcase expect-trits=-+0 expect-balance=violated expect-status=held expect-reason=balance-violation
+compile reducer-ir source=native_reducer.cdc expect-ops=4
+interpret reducer-ir-exec source=native_reducer.cdc expect-ops=4
 proof trit-walk-n6 carrier=balanced-ternary arity=6 expect-admissible=267
 end
 \end{lstlisting}

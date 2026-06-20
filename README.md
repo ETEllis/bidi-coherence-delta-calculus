@@ -34,7 +34,7 @@ The only Python file left is `cdc_boot.py`, a minimal bootloader that reads
 native `.cdc` declarations and verifies expectations. It is not the calculus.
 The 64-state bridge has a separate non-Python runtime in
 `runtime/cdc_bridge_runtime.c` that consumes `bridge64.cdc` as a lookup table,
-generates and verifies the `n=9` and `n=12` higher-arity codebooks, and emits
+  generates and verifies the `n=9` and `n=12` higher-arity codebooks, and emits
 the interactive bridge SVG. The native reducer runtime lives in
 `runtime/cdc_native_runtime.c` and executes source-declared `.cdc` `flow`,
 `commit`, `nest`, `guard`, `trace`, `measure`, `policy`, `bridge`, `counter`,
@@ -61,7 +61,8 @@ There are no package dependencies.
 ```bash
 git clone https://github.com/ETEllis/bidi-coherence-delta-calculus.git
 cd bidi-coherence-delta-calculus
-./scripts/verify.sh          # Full verification gate (start here)
+./scripts/verify.sh          # Full local verification gate (start here)
+./scripts/verify.sh --require-formal  # CI-equivalent gate requiring Lean, Rocq/Coq, and Tectonic
 python3 cdc_boot.py          # Native .cdc contract/witness verification
 ```
 
@@ -82,7 +83,7 @@ flowchart TD
     end
 
     Flow["⟶_d  Continuous Flow<br/>(Lipschitz vector field<br/>+ belief / weight update)"]
-    Commit["⟶_β  Commit<br/>(Guard fires → trit-walk barrier<br/>+ free-energy non-increase check)"]
+    Commit["⟶_β  Commit<br/>(Guard fires → accepted/held trit-walk barrier<br/>+ commit-time guard status)"]
     Bidi["γΔ  bidiγΔ coupling<br/>Path-aware relations across nested frames<br/>α=0 cone: parent ↔ child"]
 
     Channels --> Flow
@@ -120,14 +121,14 @@ This calculus supplies one shared, executable vocabulary and verified reference 
 - **Balanced-ternary carrier** — committed values are `-1 / 0 / +1` around real equilibrium, not binary false/true labels.
 - **Existence viability** — frames persist by preserving bounded coherent continuity while retaining mode-appropriate transition capacity.
 - **64-state dyadic/triadic bridge** — `bridge64.cdc` declares every `2^6 = 4^3 = 64` codebook row for bootstrap/runtime bridge design.
-- **Generated higher-arity codebooks** — `bridge512.cdc` and `bridge4096.cdc` contain the full generated rows for `n=9` and `n=12`, with runtime regeneration checks.
+- **Generated higher-arity codebooks** — `bridge512.cdc` and `bridge4096.cdc` contain the full generated rows for `n=9` and `n=12`, with runtime regeneration checks. The verified bootstrap arity is `n=6`; arbitrary `n=3k` generation is still a future proof/generator obligation.
 - **Operational bridge runtime** — `runtime/cdc_bridge_runtime.c` parses `bridge64.cdc`, verifies bijection, performs dyadic/triadic lookup, projects trace trits into bridge coordinates, verifies generated codebooks, and emits an interactive 64-cell SVG.
-- **Operational native reducer** — `runtime/cdc_native_runtime.c` parses `native_reducer.cdc` and executes source-declared flow, commit, and nest transitions.
+- **Operational native reducer** — `runtime/cdc_native_runtime.c` parses `native_reducer.cdc` and executes source-declared flow, accepted commit, held commit, and nest transitions.
 - **Native full-surface runtime** — `native_surface.cdc` exercises guard, trace, measure, policy, bridge, and counter forms through the same C runtime.
 - **Native compile/interpreter/proof path** — the same runtime emits reducer IR, executes that IR through an interpreter path, and exhaustively checks the finite n=6 balanced-ternary walk spectrum.
 - **Council + self-evolution scenario** — `council_bridge.cdc` deliberates across modules into a bridge coordinate and writes a bridge-coordinate witness into an evolved `.cdc` source copy.
 - **Trit-walk barrier + nonnegative balance** — clean discrete guard preventing rank violation on continuous-to-discrete quantization.
-- **Native free-energy witnesses** — commits are guarded against Φ increase; continuous flow has explicit subset obligations.
+- **Native guard witnesses** — commit-time guards report `accepted`, `held`, or `degraded` status plus a reason such as `none`, `balance-violation`, `energy-increase`, or `deadband-jitter`; continuous free-energy descent remains scoped to witnessed subset obligations.
 - **`.cdc` literate DSL** — single source format declaring fields, modules, channels, guards, flows, and proof obligations.
 - **Native kernel contract** — `kernel.cdc` starts the self-hosting path by declaring calculus terms, reducer rules, capabilities, and the shrinking bootloader boundary.
 - **Minimal bootloader** — `cdc_boot.py` only loads `.cdc`, checks declarations, and reports expectations.
@@ -138,25 +139,33 @@ source mirrors for the same n=6 carrier spectrum.
 
 ## Verification Status (v0.2.4)
 
-The package passes 100% through `./scripts/verify.sh`, which is also the
-repository CI gate in `.github/workflows/formal-gate.yml`:
+The package passes 100% through `./scripts/verify.sh`. CI runs the stricter
+`./scripts/verify.sh --require-formal` gate in `.github/workflows/ci.yml`:
 
 - 1/1 Python bootloader file: `cdc_boot.py`
-- 176/176 native `.cdc` expectations
+- 177/177 native `.cdc` expectations
 - 13/13 native invariant declarations
 - 32/32 native capability declarations
-- 4765/4765 native witness declarations
+- 4766/4766 native witness declarations
 - C bridge runtime compile, lookup, trace-coordinate, generated higher-arity codebook, and interactive grid/SVG checks
-- C native reducer runtime run/compile/interpret/proof/surface/council/evolve checks
-- Lean and Coq finite carrier and algebraic law proof checks when `lean` or `coqc` are installed
-- Paper compile through `tectonic` when available
-- CI installs Lean and Coq and treats the native contract, C runtimes, generated artifact freshness, and finite proof mirrors as one required formal gate
+- C native reducer runtime run/compile/interpret/proof/surface/council/evolve checks, including explicit accepted and held commit statuses
+- Lean and Rocq/Coq finite carrier and algebraic law proof checks
+- Paper compile through `tectonic`
+- CI installs Lean 4.31.0, Rocq/Coq 9.1.1, and Tectonic 0.16.9 and treats the native contract, C runtimes, generated artifact freshness, finite proof mirrors, and paper compile as one required gate
 
 Run the full gate anytime:
 
 ```bash
 ./scripts/verify.sh
+./scripts/verify.sh --require-formal
 ```
+
+## Layered Value Proposition
+
+- **Language layer:** `.cdc` is the source of record for fields, modules, channels, reducers, witnesses, and expectations.
+- **Runtime layer:** C runtimes execute the bridge, reducer, surface, council, and source-evolution jobs directly from `.cdc`.
+- **Formal layer:** Lean, Rocq/Coq, and native finite checkers cover the `n=6` carrier/algebra bootstrap while larger continuous proofs remain explicitly queued.
+- **Product layer:** generated bridge assets and the replay demo expose the runtime trace as an inspectable interface without claiming live WASM parity yet.
 
 ## Native `.cdc` Example
 
@@ -168,7 +177,7 @@ kernel bidi stage=2 target=cdc
   bootloader read-source parse-lines collect-native-declarations verify-expectations report
   expect native substrate == cdc
   expect python-files == 1
-  expect witnesses >= 4765
+  expect witnesses >= 4766
 end
 ```
 
@@ -200,7 +209,7 @@ the tracked 64-cell interactive SVG and the generated `bridge512.cdc` and
 ## Native Reducer Runtime
 
 The reducer is no longer only a target described in prose. `native_reducer.cdc`
-declares a small field with modules, cells, an angular channel, and three
+declares a small field with modules, cells, an angular channel, and four
 source-level reducer jobs:
 
 ```bash
@@ -216,7 +225,7 @@ build/cdc_native_runtime evolve council_bridge.cdc
 The C runtime consumes that source and executes:
 
 - `flow`: continuous phase evolution plus angular channel coupling;
-- `commit`: balanced-ternary quantization with nonnegative prefix-balance repair;
+- `commit`: balanced-ternary quantization with explicit `accepted` or `held` status;
 - `nest`: child coherence upward and parent context downward.
 - `compile`: reducer source to a small IR listing;
 - `interpret`: execute the compiled reducer IR as an IR path rather than only printing it;

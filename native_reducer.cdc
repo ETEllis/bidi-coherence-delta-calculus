@@ -14,17 +14,24 @@ cell child.a module=child theta=0.0 amplitude=1.0 omega=0.0
 cell child.b module=child theta=0.0 amplitude=1.0 omega=0.0
 cell child.c module=child theta=1.5707963267948966 amplitude=1.0 omega=0.0
 
+module holdcase field=reducer-field belief=0.0 prior=0.0 precision=1.0 action-gain=1.0
+cell holdcase.a module=holdcase theta=3.141592653589793 amplitude=1.0 omega=0.0
+cell holdcase.b module=holdcase theta=0.0 amplitude=1.0 omega=0.0
+cell holdcase.c module=holdcase theta=1.5707963267948966 amplitude=1.0 omega=0.0
+
 channel council.a -> council.b weight=0.25 delay=0.0 angle=0.0 lines=1
 
 flow reducer-flow field=reducer-field duration=1.0 expect-theta=council.b:0.25 tolerance=0.000001
-commit reducer-commit module=council expect-trits=0+- expect-balance=admissible
+commit reducer-commit module=council expect-trits=0+- expect-balance=admissible expect-status=accepted expect-reason=none
 nest reducer-nest parent=council child=child expect-parent-belief=0.666667 expect-child-prior=0.666667 tolerance=0.000001
-compile reducer-ir source=native_reducer.cdc expect-ops=3 expect-flow=1 expect-commit=1 expect-nest=1
-interpret reducer-ir-exec source=native_reducer.cdc expect-ops=3 expect-flow=1 expect-commit=1 expect-nest=1
+commit reducer-hold module=holdcase expect-trits=-+0 expect-balance=violated expect-status=held expect-reason=balance-violation
+compile reducer-ir source=native_reducer.cdc expect-ops=4 expect-flow=1 expect-commit=2 expect-nest=1
+interpret reducer-ir-exec source=native_reducer.cdc expect-ops=4 expect-flow=1 expect-commit=2 expect-nest=1
 proof trit-walk-n6 carrier=balanced-ternary arity=6 expect-total=729 expect-admissible=267 expect-localized=51 expect-saturated=20 expect-catalan=5
 
 witness reducer-flow-native invariant=flow-additivity reducer=reducer-flow claim="C native runtime executes source-declared flow"
 witness reducer-commit-native invariant=preservation reducer=reducer-commit claim="C native runtime executes source-declared balanced-ternary commit"
+witness reducer-hold-native invariant=soundness reducer=reducer-hold claim="C native runtime holds a balance-violating commit with explicit status and reason"
 witness reducer-nest-native invariant=existence-viability reducer=reducer-nest claim="C native runtime executes source-declared parent-child nest exchange"
 witness compiler-reducer-ir capability=G3 compile=reducer-ir claim="C native runtime compiles source-declared reducer jobs into reducer IR"
 witness interpreter-reducer-ir capability=G7 interpret=reducer-ir-exec claim="C native runtime interprets compiled reducer IR"
@@ -32,6 +39,7 @@ witness proof-trit-walk-n6 invariant=normalforms capability=G4 proof=trit-walk-n
 
 expect reducer reducer-flow-native
 expect reducer reducer-commit-native
+expect reducer reducer-hold-native
 expect reducer reducer-nest-native
 expect compile compiler-reducer-ir
 expect interpret interpreter-reducer-ir

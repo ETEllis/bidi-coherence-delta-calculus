@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    name: Native CDC, bridge, reducer, formal proofs, and paper
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Lean
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain "$(cat lean-toolchain)"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Set up OCaml/opam for Rocq
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "5.4.1"
+
+      - name: Install Rocq/Coq 9.1.1
+        run: |
+          opam update
+          opam install -y rocq-core=9.1.1 rocq-stdlib=9.1.1
+          eval "$(opam env)"
+          echo "$(opam var bin)" >> "$GITHUB_PATH"
+
+      - name: Install Tectonic
+        uses: wtfjoke/setup-tectonic@v4
+        with:
+          tectonic-version: "0.16.9"
+
+      - name: Tool versions
+        run: |
+          python3 --version
+          cc --version
+          lean --version | grep "4.31.0"
+          coqc --version | grep "9.1.1"
+          tectonic --version | grep "0.16.9"
+
+      - name: Run full verification gate
+        run: ./scripts/verify.sh --require-formal

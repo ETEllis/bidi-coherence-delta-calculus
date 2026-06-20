@@ -1,5 +1,3 @@
-import Std
-
 namespace CDCFinite
 
 inductive Trit where

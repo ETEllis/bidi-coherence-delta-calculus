@@ -28,7 +28,7 @@ witness law-rotation-linear invariant=rotation-linear claim="rotation distribute
 witness law-corefold-linear invariant=corefold-morphism claim="core-fold preserves superposition"
 witness law-corefold-equivariant invariant=corefold-morphism claim="core-fold commutes with rotation"
 witness law-corefold-nonidempotent invariant=corefold-morphism claim="core-fold abstracts strictly"
-witness law-preservation-random invariant=preservation claim="commit barrier repairs negative debt"
+witness law-preservation-random invariant=preservation claim="commit barrier holds negative debt"
 witness law-soundness-commit invariant=soundness claim="commit guard rejects potential increase"
 witness law-soundness-flow-subset invariant=soundness claim="phase-balanced coupling reduces disagreement"
 witness law-local-confluence invariant=local-confluence claim="disjoint commit footprints commute"

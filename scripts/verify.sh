@@ -3,6 +3,34 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
+REQUIRE_FORMAL=0
+
+usage() {
+  cat <<'EOF'
+Usage: ./scripts/verify.sh [--require-formal]
+
+  --require-formal  Fail if Lean, Coq/Rocq, or Tectonic are unavailable.
+EOF
+}
+
+while (($#)); do
+  case "$1" in
+    --require-formal)
+      REQUIRE_FORMAL=1
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "unknown verify option: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+  shift
+done
+
 on_error() {
   local status=$?
   local line=${BASH_LINENO[0]:-${LINENO}}
@@ -13,6 +41,23 @@ trap on_error ERR
 run_step() {
   echo "+ $*"
   "$@"
+}
+
+require_or_skip() {
+  local tool=$1
+  local label=$2
+
+  if command -v "$tool" >/dev/null 2>&1; then
+    return 0
+  fi
+
+  if (( REQUIRE_FORMAL )); then
+    echo "$tool is required for --require-formal ($label)" >&2
+    exit 1
+  fi
+
+  echo "$tool not found; skipping $label"
+  return 1
 }
 
 assert_fresh_file() {
@@ -122,31 +167,35 @@ grep -q "flow=reducer-flow .*theta council.b=0.250000" <<<"$native_reducer" || {
   echo "native reducer flow check failed" >&2
   exit 1
 }
-grep -q "commit=reducer-commit .*trits=0+- .*balance=admissible" <<<"$native_reducer" || {
+grep -q "commit=reducer-commit .*trits=0+- .*balance=admissible .*status=accepted .*reason=none" <<<"$native_reducer" || {
   echo "native reducer commit check failed" >&2
+  exit 1
+}
+grep -q "commit=reducer-hold .*trits=-+0 .*balance=violated .*status=held .*reason=balance-violation" <<<"$native_reducer" || {
+  echo "native reducer held-commit check failed" >&2
   exit 1
 }
 grep -q "nest=reducer-nest .*parent-belief=0.666667 .*child-prior=0.666667" <<<"$native_reducer" || {
   echo "native reducer nest check failed" >&2
   exit 1
 }
-grep -q "native reducer ok steps=3 flow=1 commit=1 nest=1" <<<"$native_reducer" || {
+grep -q "native reducer ok steps=4 flow=1 commit=2 nest=1" <<<"$native_reducer" || {
   echo "native reducer summary check failed" >&2
   exit 1
 }
 native_compile="$(build/cdc_native_runtime compile native_reducer.cdc)"
 echo "$native_compile"
-grep -q "native compile ok jobs=1 ops=3" <<<"$native_compile" || {
+grep -q "native compile ok jobs=1 ops=4" <<<"$native_compile" || {
   echo "native compile check failed" >&2
   exit 1
 }
 native_interpret="$(build/cdc_native_runtime interpret native_reducer.cdc)"
 echo "$native_interpret"
-grep -q "ir-interpreter source=native_reducer.cdc ops=3" <<<"$native_interpret" || {
+grep -q "ir-interpreter source=native_reducer.cdc ops=4" <<<"$native_interpret" || {
   echo "native IR interpreter did not compile IR" >&2
   exit 1
 }
-grep -q "native interpret ok ops=3 flow=1 commit=1 nest=1" <<<"$native_interpret" || {
+grep -q "native interpret ok ops=4 flow=1 commit=2 nest=1" <<<"$native_interpret" || {
   echo "native IR interpreter check failed" >&2
   exit 1
 }
@@ -190,6 +239,84 @@ grep -q "native surface ok guards=1 traces=1 measures=1 policies=1 bridges=1 cou
   echo "native surface summary check failed" >&2
   exit 1
 }
+
+echo
+echo "== Runtime replay demo contract =="
+export NATIVE_REDUCER_OUTPUT="$native_reducer"
+export NATIVE_SURFACE_OUTPUT="$native_surface"
+export TRACE_PROJECTION_OUTPUT="$trace_projection"
+python3 - <<'PY'
+import json
+import os
+import re
+from pathlib import Path
+
+
+def match(pattern: str, text: str, label: str) -> tuple[str, ...]:
+    found = re.search(pattern, text)
+    if not found:
+        raise SystemExit(f"demo replay could not read {label}")
+    return found.groups()
+
+
+html = Path("demo/index.html").read_text(encoding="utf-8")
+payload = re.search(
+    r'<script type="application/json" id="replay-data">\s*(.*?)\s*</script>',
+    html,
+    re.S,
+)
+if not payload:
+    raise SystemExit("demo replay data block missing")
+replay = json.loads(payload.group(1))
+
+native = os.environ["NATIVE_REDUCER_OUTPUT"]
+surface = os.environ["NATIVE_SURFACE_OUTPUT"]
+projection = os.environ["TRACE_PROJECTION_OUTPUT"]
+
+(theta_raw,) = match(r"theta council\.b=([0-9.]+)", native, "flow theta")
+accepted = match(
+    r"commit=reducer-commit .*trits=([^ ]+) .*balance=([^ ]+) .*status=([^ ]+) .*reason=([^\n]+)",
+    native,
+    "accepted commit",
+)
+held = match(
+    r"commit=reducer-hold .*trits=([^ ]+) .*balance=([^ ]+) .*status=([^ ]+) .*reason=([^\n]+)",
+    native,
+    "held commit",
+)
+nest = match(
+    r"nest=reducer-nest .*up=([0-9.]+) .*parent-belief=([0-9.]+) .*child-prior=([0-9.]+)",
+    native,
+    "nest transfer",
+)
+trace = match(r"trace=surface-trace .*trits=([^ ]+) .*events=([0-9]+)", surface, "surface trace")
+surface_bridge = match(
+    r"bridge=surface-bridge .*dyadic=([^ ]+) .*triadic=([^\n]+)",
+    surface,
+    "surface bridge",
+)
+projected_bridge = match(
+    r"occupancy=([^ ]+) index=([^ ]+) triadic=([^ ]+)",
+    projection,
+    "projected bridge",
+)
+
+checks = [
+    (replay["flow"]["thetaCouncilBRaw"], theta_raw, "flow raw theta"),
+    (replay["flow"]["thetaCouncilB"], str(float(theta_raw)), "flow display theta"),
+    (tuple(replay["commit"][k] for k in ("trits", "balance", "status", "reason")), accepted, "accepted commit"),
+    (tuple(replay["hold"][k] for k in ("trits", "balance", "status", "reason")), held, "held commit"),
+    (tuple(replay["nest"][k] for k in ("up", "parentBelief", "childPrior")), nest, "nest values"),
+    ((replay["trace"]["trits"], replay["trace"]["events"]), trace, "trace values"),
+    ((replay["bridge"]["dyadic"], replay["bridge"]["triadic"]), surface_bridge, "surface bridge values"),
+    ((replay["bridge"]["dyadic"], replay["bridge"]["index"], replay["bridge"]["triadic"]), projected_bridge, "projected bridge values"),
+]
+for got, want, label in checks:
+    if got != want:
+        raise SystemExit(f"demo replay mismatch for {label}: {got!r} != {want!r}")
+
+print("runtime replay demo: ok")
+PY
 council_output="$(build/cdc_native_runtime council council_bridge.cdc)"
 echo "$council_output"
 grep -q "council=bridge-council .*dyadic=101101 .*triadic=231 .*decision=adopt" <<<"$council_output" || {
@@ -217,27 +344,21 @@ grep -q "self-evolution-bridge" build/evolved_native_reducer.cdc || {
 
 echo
 echo "== Lean/Coq finite carrier and algebraic proofs =="
-if command -v lean >/dev/null 2>&1; then
+if require_or_skip lean "Lean finite carrier/algebra proof check"; then
   run_step lean formal/lean/CDCFinite.lean
   echo "lean finite carrier/algebra proof: ok"
-else
-  echo "lean not found; skipping Lean finite carrier/algebra proof check"
 fi
 
-if command -v coqc >/dev/null 2>&1; then
+if require_or_skip coqc "Coq/Rocq finite carrier/algebra proof check"; then
   run_step coqc -q formal/coq/CDCFinite.v
   rm -f formal/coq/CDCFinite.vo formal/coq/CDCFinite.vos formal/coq/CDCFinite.vok formal/coq/CDCFinite.glob formal/coq/.CDCFinite.aux
   echo "coq finite carrier/algebra proof: ok"
-else
-  echo "coqc not found; skipping Coq finite carrier/algebra proof check"
 fi
 
 echo
 echo "== Paper compile =="
-if command -v tectonic >/dev/null 2>&1; then
+if require_or_skip tectonic "paper compile"; then
   (cd paper/arxiv && run_step tectonic main.tex)
-else
-  echo "tectonic not found; skipping PDF compile"
 fi
 
 echo

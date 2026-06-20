@@ -10,6 +10,15 @@ The project does not resolve critique by weakening claims. It resolves critique
 by making every claim native in `.cdc` now or explicitly queued for mechanical
 verification.
 
+## Claim Status
+
+| Status | Meaning | Current surface |
+|---|---|---|
+| proved | Mechanized in Lean/Rocq/Coq or exhaustively checked by the native finite proof checker | finite `n=6` carrier counts and finite algebraic mirrors |
+| witnessed | Declared as a native `.cdc` invariant, law, capability, or witness link | semantic registry, reducer links, trace/window links, bridge witnesses |
+| runtime-checked | Executed by the C runtimes or freshness checks in `scripts/verify.sh` | bridge lookup/generation, reducer flow/accepted commit/held commit/nest, surface/council/evolve, paper compile |
+| queued | Explicit formalization or product parity work not yet claimed as proved | continuous flow theorem, arbitrary `n=3k` bridge proof/generator, self-hosted reducer, live WASM parity |
+
 | Claim | Current native witness | Formal obligation |
 |---|---|---|
 | balanced-ternary carrier | `laws.cdc` declares carrier witnesses | finite codomain proof for `commit` |
@@ -20,7 +29,7 @@ verification.
 | interference is monoidal | `laws.cdc` declares associativity, commutativity, void-unit witnesses; Lean/Coq finite mirrors check the finite carrier laws | extend finite monoid law to commutative monoid proof over the continuous carrier |
 | rotation is linear | `laws.cdc` declares rotation-linearity witness; Lean/Coq finite mirrors check finite rotation linearity | carrier action proof over the continuous carrier |
 | core-fold is a morphism | `laws.cdc` declares linearity/equivariance and non-idempotence witnesses | projection morphism proof |
-| commit preservation | `laws.cdc` declares preservation witness | induction over cell order and barrier repair |
+| commit preservation | `laws.cdc` declares preservation witness; `native_reducer.cdc` includes accepted and held commit fixtures | accepted/held case split over cell order; no negative-balance repair mutation |
 | commit soundness | `laws.cdc` declares commit and flow-subset soundness witnesses | guard accept/hold case split |
 | local confluence | `laws.cdc` declares disjoint-commit witness | footprint-disjoint diamond lemma |
 | flow additivity | `laws.cdc` declares split-duration witness | monoid-action proof for the flow relation |
@@ -65,6 +74,7 @@ It rebuilds the C bridge and native reducer runtimes, verifies native `.cdc`
 expectations, checks generated codebooks and the interactive bridge SVG against
 runtime output, runs finite proof mirrors when their tools are available, and
 compiles the paper when `tectonic` is installed. The GitHub Actions workflow
-`.github/workflows/formal-gate.yml` installs Lean and Coq before running the
-same script, so pushes and pull requests cannot drift from the native witness
-surface or the finite formal mirrors.
+`.github/workflows/ci.yml` installs Lean 4.31.0, Rocq/Coq 9.1.1, and Tectonic
+0.16.9 before running `./scripts/verify.sh --require-formal`, so pushes and
+pull requests cannot drift from the native witness surface, finite formal
+mirrors, generated artifacts, or the paper.

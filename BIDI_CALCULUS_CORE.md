@@ -71,7 +71,10 @@ grammar. The canonical arity is `n = 6` with read cone `= v̄[1..3]`, write cone
 `= v̄[4..6]`. This is also the bootstrap bridge arity where the dyadic and
 triadic closure codebooks first meet: `2^6 = 4^3 = 64`. `bridge64.cdc`
 declares all 64 rows explicitly, mapping a six-bit dyadic carrier state to
-three four-state slots.
+three four-state slots. The `n=6` surface is the verified bootstrap. The `n=9`
+and `n=12` bridge surfaces are generated and checked against tracked source
+artifacts; arbitrary `n=3k` bridge generation remains a future proof/generator
+obligation.
 
 ---
 
@@ -219,17 +222,21 @@ requires it.
 ## 7 · Metatheorems (native witnesses)
 
 **T1 — Preservation.** `F ⟶_β F'` ⟹ every committed module in `F'` is *admissible*
-(its trit walk never goes negative). *Proof:* the barrier rotates any rank-violating
-cell to its crossing (`τ̂=0`), which cannot lower the running rank; induct on
-cells. Native witnesses: `law-preservation-random`,
+(its trit walk never goes negative). *Proof sketch:* the commit computes the
+candidate trit walk before mutating state. If the prefix balance would go
+negative, the proposal is held and no committed module is produced from that
+candidate; otherwise the accepted trits latch. Induct on cells in the accepted
+case. Native witnesses: `law-preservation-random`,
 `law-balanced-enumeration`.
 
 **T2 — Soundness (Lyapunov).** Let `Φ(F)=Σ_m Φ_m`. Then `⟶_β` never increases `Φ`
-(unconditionally, by the guard's hold-clause); and `⟶_d` never increases `Φ` in its
-belief component (exact gradient descent), and in its coupling component under
-symmetric, delay-free, ungated, phase-balanced coupling. Under those stated regimes,
-`Φ` is a Lyapunov witness for the reduction: runs descend free energy. Native
-witnesses: `law-soundness-commit`, `law-soundness-flow-subset`.
+for accepted commit-time guard cases and holds rather than accepting rejected
+proposals. This is separate from continuous numerical trajectory error: `⟶_d`
+never increases `Φ` in its belief component under exact gradient descent, and
+its coupling component is currently witnessed only under symmetric, delay-free,
+ungated, phase-balanced coupling. Under those stated regimes, `Φ` is a Lyapunov
+witness for the reduction. Native witnesses: `law-soundness-commit`,
+`law-soundness-flow-subset`.
 
 **E0 — Existence viability.** A frame remains viable when it preserves finite
 bounded state, boundary integrity, and the transition capacity appropriate to

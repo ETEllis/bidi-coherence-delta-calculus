@@ -26,7 +26,7 @@ kernel bidi stage=2 target=cdc
   expect terms >= 10
   expect rules >= 14
   expect invariants >= 13
-  expect witnesses >= 4765
+expect witnesses >= 4766
   expect capabilities >= 32
   expect provides parser-state reducer-state witness-state trace-window-state
   expect provides balanced-ternary-carrier angular-phase path-relation invariant-gate

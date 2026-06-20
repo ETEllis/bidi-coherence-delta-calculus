@@ -78,6 +78,8 @@ typedef struct {
     double expect_theta;
     char expect_trits[64];
     char expect_balance[32];
+    char expect_status[32];
+    char expect_reason[32];
     int has_expect_theta;
     int has_expect_parent_belief;
     int has_expect_child_prior;
@@ -384,6 +386,19 @@ static int trit_value(char trit) {
     return 0;
 }
 
+static int is_commit_status(const char *status) {
+    return strcmp(status, "accepted") == 0 ||
+           strcmp(status, "held") == 0 ||
+           strcmp(status, "degraded") == 0;
+}
+
+static int is_hold_reason(const char *reason) {
+    return strcmp(reason, "none") == 0 ||
+           strcmp(reason, "energy-increase") == 0 ||
+           strcmp(reason, "balance-violation") == 0 ||
+           strcmp(reason, "deadband-jitter") == 0;
+}
+
 static int close_enough(double a, double b, double tolerance) {
     return fabs(a - b) <= tolerance;
 }
@@ -490,6 +505,8 @@ static void add_step(Runtime *rt, const char *line, StepKind kind, const char *p
     copy_attr(line, "child", step->child, sizeof(step->child), "");
     copy_attr(line, "expect-trits", step->expect_trits, sizeof(step->expect_trits), "");
     copy_attr(line, "expect-balance", step->expect_balance, sizeof(step->expect_balance), "");
+    copy_attr(line, "expect-status", step->expect_status, sizeof(step->expect_status), "");
+    copy_attr(line, "expect-reason", step->expect_reason, sizeof(step->expect_reason), "");
     parse_expect_theta(step, line);
     if (read_attr(line, "expect-parent-belief", value, sizeof(value))) {
         step->expect_parent_belief = atof(value);
@@ -768,9 +785,13 @@ static void run_commit(Runtime *rt, Step *step) {
     Module *module = find_module(rt, step->module);
     Field *field;
     char trits[128];
+    int cell_indexes[MAX_CELLS];
+    char cell_trits[MAX_CELLS];
     int trit_count = 0;
     int balance = 0;
     int admissible = 1;
+    const char *status;
+    const char *reason;
     if (!module) {
         fail("commit references unknown module");
     }
@@ -788,30 +809,66 @@ static void run_commit(Runtime *rt, Step *step) {
         trit = trit_from_theta(cell->theta, field->deadband);
         value = trit_value(trit);
         if (balance + value < 0) {
-            trit = '0';
-            value = 0;
-            cell->theta = PI / 2.0;
+            admissible = 0;
         }
         balance += value;
         if (balance < 0) {
             admissible = 0;
         }
-        cell->latch = trit;
-        cell->has_latch = 1;
         if (trit_count + 1 >= (int)sizeof(trits)) {
             fail("commit trit vector too long");
         }
+        cell_indexes[trit_count] = i;
+        cell_trits[trit_count] = trit;
         trits[trit_count++] = trit;
     }
     trits[trit_count] = '\0';
+    if (trit_count == 0) {
+        fail("commit module has no cells");
+    }
+    status = admissible ? "accepted" : "held";
+    reason = admissible ? "none" : "balance-violation";
+    if (admissible) {
+        for (int i = 0; i < trit_count; i++) {
+            Cell *cell = &rt->cells[cell_indexes[i]];
+            cell->latch = cell_trits[i];
+            cell->has_latch = 1;
+        }
+    }
     if (step->expect_trits[0] && strcmp(trits, step->expect_trits) != 0) {
         fail("commit trit expectation mismatch");
     }
-    if (strcmp(step->expect_balance, "admissible") == 0 && !admissible) {
-        fail("commit balance expectation mismatch");
+    if (step->expect_balance[0]) {
+        if (strcmp(step->expect_balance, "admissible") == 0) {
+            if (!admissible) {
+                fail("commit balance expectation mismatch");
+            }
+        } else if (strcmp(step->expect_balance, "violated") == 0) {
+            if (admissible) {
+                fail("commit balance expectation mismatch");
+            }
+        } else {
+            fail("unknown commit balance expectation");
+        }
     }
-    printf("commit=%s module=%s trits=%s balance=%s\n",
-           step->id, module->name, trits, admissible ? "admissible" : "violated");
+    if (step->expect_status[0]) {
+        if (!is_commit_status(step->expect_status)) {
+            fail("unknown commit status expectation");
+        }
+        if (strcmp(status, step->expect_status) != 0) {
+            fail("commit status expectation mismatch");
+        }
+    }
+    if (step->expect_reason[0]) {
+        if (!is_hold_reason(step->expect_reason)) {
+            fail("unknown commit reason expectation");
+        }
+        if (strcmp(reason, step->expect_reason) != 0) {
+            fail("commit reason expectation mismatch");
+        }
+    }
+    printf("commit=%s module=%s trits=%s balance=%s status=%s reason=%s\n",
+           step->id, module->name, trits, admissible ? "admissible" : "violated", status, reason);
 }
 
 static double module_mean_trit(Runtime *rt, Module *module) {
